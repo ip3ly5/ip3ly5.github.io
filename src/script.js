@@ -109,7 +109,7 @@ modelArray.forEach(function (obj, i) {
 
     loader.load(
         // resource URL
-        obj + '.glb',
+        obj.toLowerCase() + '.glb',
         // called when the resource is loaded
         function (gltf) {
 
