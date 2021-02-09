@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>three.js webgl - interactive cubes</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #f0f0f0;
+				margin: 0px;
+				overflow: hidden;
+			}
+		</style>
+	</head>
+	<body>
+
+<script src="docs/build/three.js"></script>	
+<script src="docs/build/Tween.js"></script>	
+    <script src="docs/examples/js/controls/OrbitControls.js"></script>
+
+        
+        <script>
+			var container;
+			var camera, scene, raycaster, renderer, controls;
+
+			var mouse = new THREE.Vector2(), INTERSECTED;
+			var radius = 100, theta = 0;
+
+			init();
+			animate();
+
+			function init() {
+
+				container = document.createElement( 'div' );
+				document.body.appendChild( container );
+
+				var info = document.createElement( 'div' );
+				info.style.position = 'absolute';
+				info.style.top = '10px';
+				info.style.width = '100%';
+				info.style.textAlign = 'center';
+				container.appendChild( info );
+                
+                scene = new THREE.Scene();
+
+				camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 10000 );
+
+				var light = new THREE.DirectionalLight( 0xffffff, 1 );
+				light.position.set( 1, 1, 1 ).normalize();
+				scene.add( light );
+
+				var geometry = new THREE.BoxBufferGeometry( 20, 20, 20 );
+
+				for ( var i = 0; i < 100; i ++ ) {
+
+					var object = new THREE.Mesh( geometry, new THREE.MeshLambertMaterial( { color: 0xff2222 } ) );
+
+					object.position.x = Math.random() * 800 - 400;
+					object.position.y = Math.random() * 800 - 400;
+					object.position.z = Math.random() * 800 - 400;
+
+					object.scale.x = 2;
+					object.scale.y = 2;
+					object.scale.z = 2;
+
+					scene.add( object );
+
+				}
+                
+            controls = new THREE.OrbitControls( camera, renderer);
+            controls.autoRotate = true;
+            controls.autoRotateSpeed = 3;
+				raycaster = new THREE.Raycaster();
+				renderer = new THREE.WebGLRenderer();
+				renderer.setClearColor( 0xf0f0f0 );
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+                document.body.appendChild( renderer.domElement );            
+
+				document.addEventListener( 'mousemove', onDocumentMouseMove, false );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+			function onDocumentMouseMove( event ) {
+
+				event.preventDefault();
+
+				mouse.x = ( event.clientX / window.innerWidth ) * 2 - 1;
+				mouse.y = - ( event.clientY / window.innerHeight ) * 2 + 1;
+
+			}
+
+			//
+
+			function animate() {
+				raycaster.setFromCamera( mouse, camera );
+
+				requestAnimationFrame( animate );
+				renderer.render( scene, camera );
+                controls.update();
+                TWEEN.update();
+                
+
+			}
+            
+            function clicked() {
+                
+                
+                var intersects = raycaster.intersectObjects( scene.children);
+
+				if ( intersects.length > 0 ) {
+                    
+                    var position = {x:camera.position.x,y:camera.position.y,z:camera.position.z};                    
+                    console.log("position",position);
+
+                    var target = {x:intersects[0].point.x,y:intersects[0].point.y,z:intersects[0].point.z,}
+                    console.log("target",target);
+                    
+                    var Postween = new TWEEN.Tween(position).to(target, 4000);
+
+                    
+                    console.log("clicked");
+//                    camera.lookAt(intersects[0].point);
+//                     camera.position.set(intersects[0].point.x,intersects[0].point.y,intersects[0].point.z);
+                    controls.target.set(intersects[0].point.x,intersects[0].point.y,intersects[0].point.z)
+                   
+                    
+            Postween.onUpdate(function(){
+    controls.target.x = position.x;
+    controls.target.y = position.y;
+    controls.target.z = position.z;
+
+});
+                    
+                    Postween.start();
+                    Rottween.start();
+                    
+                    
+
+                    
+
+
+				} else {
+
+
+					INTERSECTED = null;
+
+				}
+            }
+
+            
+                renderer.domElement.addEventListener('mousedown', function(event) {
+				// find intersections
+
+clicked();
+				camera.updateMatrixWorld();
+
+
+			});
+      
+
+		</script>
+
+	</body>
+</html>
