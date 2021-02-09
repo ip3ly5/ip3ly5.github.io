@@ -1,5 +1,5 @@
 html {
-
+color:white;
 font-size:100%;
 }
 
@@ -200,6 +200,7 @@ ul {
     padding-bottom: 3rem;
     text-align: center;
     margin-bottom: 2rem;
+
 }
 
 .button a {
@@ -208,14 +209,58 @@ ul {
     text-decoration: none;
     color: white;
     transition: background .5s;
+    margin:.5rem;
 }
 
 .button a:hover {
-
     color: black;
     background-color: white;
 }
 
+
+/* SWIPING ICON */
+
+#instructions {
+    width:100%;
+    display:flex;
+    margin: 1em auto;
+    position:absolute;
+    z-index:300;
+}
+
+.wrapper {
+    display:flex;
+    justify-content:center;
+  }
+  
+  .swipe-icon {
+      margin-left:.5rem;
+    overflow:visible;
+    width:18px;
+    height:24px;
+  }
+  
+  .swipe-icon .swipe-arrow {
+    animation: pulse-arrow 2s ease-out infinite;
+  }
+  
+  .swipe-icon {
+    animation: hand-move 2s ease-out infinite;
+  }
+  
+  @keyframes pulse-arrow {
+    0%   {transform: translateX(0); opacity:1;}
+    50%  {transform: translateX(0.25em);opacity:1;}
+    75% {transform: translateX(0.25em);opacity:0;}
+    100% {transform: translateX(0);opacity:0;}
+  }
+  
+  @keyframes hand-move {
+    0%   {transform: translateX(0);}
+    50%  {transform: translateX(0.5em);}
+    100% {transform: translateX(0);}
+  }
+  
 
 
 
@@ -251,3 +296,5 @@ ul {
         }
 
     }
+
+
