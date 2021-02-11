@@ -4,7 +4,7 @@ var thoughtanautModal = document.getElementById('thoughtanautModal');
 var houndsModal = document.getElementById('houndsModal');
 var duckhiveModal = document.getElementById('duckhiveModal');
 var wizardModal = document.getElementById('wizardModal');
-var housifyModal = document.getElementById('housifyModal');
+var fridayModal = document.getElementById('fridayModal');
 var instructions = document.getElementById('instructions');
 
 var spans = document.querySelectorAll(".close");
@@ -32,7 +32,7 @@ var thoughtanaut;
 var hounds;
 var wizard;
 var landscape;
-var housify;
+var friday;
 var eye;
 var duckhive;
 var container = document.getElementById('canvas');
@@ -105,7 +105,7 @@ function init() {
 
 
 var loader = new THREE.GLTFLoader();
-var modelArray = ['Wizard', 'Thoughtanaut', 'Hounds', 'Housify', 'Duckhive', 'Scene', 'Eye'];
+var modelArray = ['Wizard', 'Thoughtanaut', 'Hounds', 'Friday', 'Duckhive', 'Scene', 'Eye'];
 modelArray.forEach(function (obj, i) {
 
     loader.load(
@@ -151,11 +151,11 @@ modelArray.forEach(function (obj, i) {
                     hounds.rotation.x = Math.PI / 2;
                     break;
                 case 3:
-                    housify = model;
-                    scene.add(housify);
-                    housify.position.set(45, -30, 230)
-                    housify.scale.set(300, 300, 300)
-                    housify.rotation.x = Math.PI / 2; 
+                    friday = model;
+                    scene.add(friday);
+                    friday.position.set(45, -30, 230)
+                    friday.scale.set(300, 300, 300)
+                    friday.rotation.x = Math.PI / 2; 
                     break;
                 case 4:
                     duckhive = model;
@@ -194,7 +194,7 @@ function clicked(event) {
 
     raycaster.setFromCamera(mouse, camera);
 
-    var intersectsArray = [wizard, thoughtanaut, hounds, duckhive, housify];
+    var intersectsArray = [wizard, thoughtanaut, hounds, duckhive, friday];
     var intersects = raycaster.intersectObjects(intersectsArray, true);
 
     if (intersects.length > 0) {
@@ -221,7 +221,7 @@ renderer.domElement.addEventListener('mousemove', function (event) {
     raycaster.setFromCamera(mouse, camera);
 
 
-    var intersectsArray = [wizard, thoughtanaut, hounds, duckhive, housify];
+    var intersectsArray = [wizard, thoughtanaut, hounds, duckhive, friday];
 
     var intersects = raycaster.intersectObjects(intersectsArray, true);
 
@@ -267,13 +267,13 @@ function animate() {
 
     var delta = clock.getDelta();
 
-    if (wizard && landscape && thoughtanaut && duckhive && hounds && housify) { 
+    if (wizard && landscape && thoughtanaut && duckhive && hounds && friday) { 
         mixer.update(delta);
         mixer2.update(delta);
         thoughtanaut.rotation.z += 0.01;
         duckhive.rotation.z += 0.01;
         hounds.rotation.z += 0.01;
-        housify.rotation.z += 0.01;
+        friday.rotation.z += 0.01;
     }
 }
 
@@ -297,15 +297,15 @@ function navClicked(obj) {
             wizardModal.style.pointerEvents = 'all';
             break;
 
-        case 'Housify':
+        case 'Friday':
 
             var target = {
                 x: 45,
                 y: -20,
                 z: 230
             }
-            housifyModal.style.opacity = 1;
-            housifyModal.style.pointerEvents = 'all';
+            fridayModal.style.opacity = 1;
+            fridayModal.style.pointerEvents = 'all';
             break;
 
         case 'Hounds':
