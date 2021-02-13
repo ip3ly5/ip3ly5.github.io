@@ -144,7 +144,7 @@ ul {
     width: 1.75rem;
 }
 
-.linkedinImg img {
+.linkedinImg img, .githubImg img {
     width: 1.5rem;
 }
 
