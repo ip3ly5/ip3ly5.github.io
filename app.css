@@ -271,6 +271,21 @@ ul {
 
 }
 
+@media only screen and (max-width: 800px) {
+    #spacer {
+        display:none;
+    }
+
+    .modal {
+        width:100%;
+    }
+
+    #canvas {
+        width:100%;
+    }
+
+}
+
 
 @media only screen and (max-width: 400px) {
 
