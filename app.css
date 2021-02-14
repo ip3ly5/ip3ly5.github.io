@@ -220,11 +220,12 @@ ul {
 /* SWIPING ICON */
 
 #instructions {
-    width:100%;
-    display:flex;
-    margin: 1em auto;
-    position:absolute;
-    z-index:300;
+    width: 75%;
+    display: flex;
+    margin: 1em 0;
+    position: fixed;
+    left: 25%;
+    justify-content: center;
 }
 
 .wrapper {
@@ -284,6 +285,10 @@ ul {
         width:100%;
     }
 
+    #instructions {
+        width:100%;
+        left:0;
+    }
 }
 
 
