@@ -148,6 +148,10 @@ ul {
     width: 1.5rem;
 }
 
+.githubImg img {
+    border-radius:.3em;
+}
+
 .linkCenter {
     display: flex;
     justify-content: center;
