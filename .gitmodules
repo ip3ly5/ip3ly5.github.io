@@ -4,3 +4,7 @@
 [submodule "thoughtanaut"]
 	path = thoughtanaut
 	url = https://github.com/ip3ly5/thoughtanaut.git
+[submodule "valentines-day"]
+	path = valentines-day
+	url = https://github.com/ip3ly5/waterbear-valentine.git
+	branch = site
